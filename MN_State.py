@@ -16,7 +16,7 @@ class MN_State(object):
         self.menu = {}
         self.url = "http://www.minnstate.edu/college-search/public/institution?delMode=%s&matchPercentage=0&award=&category=%i"
         self.url += "&subcategory=%i"
-        self.url += "&zipCode=&zipCodeRadius=200&offset=0&numberOfResults=10&programView=true&activeTab=programSearch&pageNumber=%i"
+        self.url += "&zipCode=&zipCodeRadius=500&offset=0&numberOfResults=10&programView=true&activeTab=programSearch&pageNumber=%i"
         self.driver = webdriver.Chrome()
         self.start()
 
@@ -72,6 +72,6 @@ class MN_State(object):
 
     def save_page(self, html_source, menu_item, subcat, page_num, option):
 
-        with open('./mn_state/%s_%s_%s_%s.html' % (menu_item, subcat.replace('/',' - ').replace(', ', ' - '), option, page_num),'w') as f:
+        with open('./mn_state/%s_%s_%s_%s.html' % (menu_item, subcat.replace('/','#').replace(', ', '@'), option, page_num),'w') as f:
             f.write(str(html_source))
 MN_State()
