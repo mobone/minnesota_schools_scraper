@@ -15,18 +15,11 @@ driver.get('https://webproc.mnscu.edu/registration/search/advanced.html?campusid
 
 main_page_source = driver.page_source
 
-college_values = driver.find_elements_by_name("searchrcid")
-college_actual_values = college_values[0].find_elements_by_tag_name('option')
-
+college_actual_values = driver.find_element_by_name("searchrcid").find_elements_by_tag_name('option')
 college_value = college_actual_values[1]
 college_value.click()
-
-semester_values = driver.find_elements_by_name("yrtr")
-semester_actual_values = semester_values[0].find_elements_by_tag_name('option')
-
-subject_values = driver.find_elements_by_name('subject')
-subject_actual_values = subject_values[0].find_elements_by_tag_name('option')
-
+semester_actual_values = driver.find_element_by_name("yrtr").find_elements_by_tag_name('option')
+subject_actual_values = driver.find_element_by_name('subject').find_elements_by_tag_name('option')
 open_values = driver.find_elements_by_css_selector("input[type='radio'][name='openValue']")
 delivery_values = driver.find_elements_by_css_selector("input[type='radio'][name='delivery']")
 
@@ -34,14 +27,12 @@ delivery_values = driver.find_elements_by_css_selector("input[type='radio'][name
 for college_value_index in range(1, len(college_actual_values)):
     driver.get('https://webproc.mnscu.edu/registration/search/advanced.html?campusid=mnonline')
 
-    college_values = driver.find_elements_by_name("searchrcid")
-    college_actual_values = college_values[0].find_elements_by_tag_name('option')
+    college_actual_values = driver.find_element_by_name("searchrcid").find_elements_by_tag_name('option')
 
     college_value = college_actual_values[college_value_index]
     college_value.click()
 
-    semester_values = driver.find_elements_by_name("yrtr")
-    semester_actual_values = semester_values[0].find_elements_by_tag_name('option')
+    semester_actual_values = driver.find_element_by_name("yrtr").find_elements_by_tag_name('option')
 
     for semester_value_index in range(len(semester_actual_values)):
         for subject_value_index in range(1, 2): #len(subject_actual_values)
@@ -49,21 +40,19 @@ for college_value_index in range(1, len(college_actual_values)):
                 for delivery_value_index in range(1,len(delivery_values)):
 
                     driver.get('https://webproc.mnscu.edu/registration/search/advanced.html?campusid=mnonline')
-                    college_values = driver.find_elements_by_name("searchrcid")
-                    college_actual_values = college_values[0].find_elements_by_tag_name('option')
+
+                    college_actual_values = driver.find_element_by_name("searchrcid").find_elements_by_tag_name('option')
 
                     college_value = college_actual_values[college_value_index]
                     college_value.click()
 
-                    semester_values = driver.find_elements_by_name("yrtr")
-                    semester_actual_values = semester_values[0].find_elements_by_tag_name('option')
+                    semester_actual_values = driver.find_element_by_name("yrtr").find_elements_by_tag_name('option')
 
-                    subject_values = driver.find_elements_by_name('subject')
-                    subject_actual_values = subject_values[0].find_elements_by_tag_name('option')
+                    subject_actual_values = driver.find_element_by_name('subject').find_elements_by_tag_name('option')
 
                     open_values = driver.find_elements_by_css_selector("input[type='radio'][name='openValue']")
                     delivery_values = driver.find_elements_by_css_selector("input[type='radio'][name='delivery']")
-                    
+
                     semester_value = semester_actual_values[semester_value_index]
 
                     subject_value = subject_actual_values[subject_value_index]
