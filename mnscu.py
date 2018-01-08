@@ -39,6 +39,10 @@ for college_value_index in range(1, len(college_actual_values)):
 
     college_value = college_actual_values[college_value_index]
     college_value.click()
+
+    semester_values = driver.find_elements_by_name("yrtr")
+    semester_actual_values = semester_values[0].find_elements_by_tag_name('option')
+
     for semester_value_index in range(len(semester_actual_values)):
         for subject_value_index in range(1, 2): #len(subject_actual_values)
             for open_value_index in range(len(open_values)):
@@ -53,7 +57,7 @@ for college_value_index in range(1, len(college_actual_values)):
 
                     semester_values = driver.find_elements_by_name("yrtr")
                     semester_actual_values = semester_values[0].find_elements_by_tag_name('option')
-
+                    
                     subject_values = driver.find_elements_by_name('subject')
                     subject_actual_values = subject_values[0].find_elements_by_tag_name('option')
 
@@ -61,9 +65,11 @@ for college_value_index in range(1, len(college_actual_values)):
                     delivery_values = driver.find_elements_by_css_selector("input[type='radio'][name='delivery']")
                     try:
                         semester_value = semester_actual_values[semester_value_index]
-                    except:
-                        print("ummmmm")
-                        continue
+                    except Exception as e:
+                        print(e)
+                        print(semester_actual_values)
+                        print(semester_value_index)
+                        sleep(10000000)
                     subject_value = subject_actual_values[subject_value_index]
 
                     open_value = open_values[open_value_index]
@@ -71,8 +77,13 @@ for college_value_index in range(1, len(college_actual_values)):
 
                     semester_value.click()
                     subject_value.click()
+                    if 'No courses' in driver.page_source:
+                        continue
+
                     open_value.click()
                     delivery_value.click()
+
+
 
                     driver.find_element_by_css_selector("input[type='submit'][title='Search']").click()
 
