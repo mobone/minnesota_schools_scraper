@@ -35,7 +35,7 @@ for college_value_index in range(1, len(college_actual_values)):
     semester_actual_values = driver.find_element_by_name("yrtr").find_elements_by_tag_name('option')
 
     for semester_value_index in range(len(semester_actual_values)):
-        for subject_value_index in range(1, 2): #len(subject_actual_values)
+        for subject_value_index in range(1, len(subject_actual_values)): #len(subject_actual_values)
             for open_value_index in range(len(open_values)):
                 for delivery_value_index in range(1,len(delivery_values)):
 
@@ -75,7 +75,11 @@ for college_value_index in range(1, len(college_actual_values)):
                     # iterate through all pages
                     try:
                         driver.find_element_by_css_selector("a[class='yui-pg-next']").click()
+                        print('page iterated')
+                        sleep(1)
                     except:
+                        print('no next page')
+
                         continue
 
                     html_source = str(driver.page_source)
